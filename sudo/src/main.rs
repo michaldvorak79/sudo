@@ -342,11 +342,14 @@ fn do_run(matches: &ArgMatches) -> Result<i32> {
     let allowed_mode = check_enabled_or_bail();
     let copy_env = matches.get_flag("copyEnv");
 
-    if !can_current_user_elevate()? {
-        // Bail out with an error. main(0) will then print the error message to
-        // the user to let them know they aren't allowed to run sudo.
-        return Err(ERROR_REQUEST_REFUSED.into());
-    }
+    // I disabled the following check whether the user has admin right because it can't detect 
+    // the goddamn AdminByRequest solution which the corporate is shoving down our throats.
+ 
+    // if !can_current_user_elevate()? {
+    //     // Bail out with an error. main(0) will then print the error message to
+    //     // the user to let them know they aren't allowed to run sudo.
+    //     return Err(ERROR_REQUEST_REFUSED.into());
+    // }
 
     let requested_mode = if matches.get_flag("newWindow") {
         Some(SudoMode::ForceNewWindow)

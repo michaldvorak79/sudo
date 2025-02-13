@@ -178,6 +178,7 @@ fn get_token_info<T: TokenInfo>(token: HANDLE) -> Result<T> {
     }
 }
 
+#[allow(dead_code)]
 pub fn can_current_user_elevate() -> Result<bool> {
     let current_token = current_process_token()?;
     let elevation_type: TOKEN_ELEVATION_TYPE = get_token_info(*current_token)?;
